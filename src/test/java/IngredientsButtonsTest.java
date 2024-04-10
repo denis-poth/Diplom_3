@@ -2,13 +2,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.*;
+import methods.WebDriverSettings;
 
 import static org.junit.Assert.assertTrue;
 
@@ -18,7 +15,7 @@ public class IngredientsButtonsTest {
 
     @Before
     public void setUp() {
-        driver = getDriver();
+        driver = WebDriverSettings.getDriver();
         driver.get("https://stellarburgers.nomoreparties.site/");
         wait = new WebDriverWait(driver, 5);
     }
@@ -26,7 +23,10 @@ public class IngredientsButtonsTest {
     // Проверка нажатия на кнопку "Булки" на экране конструктора
     @Test
     public void testIngredientBun() throws InterruptedException {
-        // Нажать на кнопку "Булки"
+        // Нажать на кнопку "Соусы", чтобы перейти в другой раздел и проверить возвращение к разделу "Булки"
+        waitAndClick(MainPageObjects.SAUCE_BUTTON);
+        Thread.sleep(1000); // Подождать 1 секунду
+        // Нажать на кнопку "Булки", для непосредственного теста перехода к разделу "Булки"
         waitAndClick(MainPageObjects.BUN_BUTTON);
         // Проверяем наличие текста "Булки" на странице
         Thread.sleep(1000); // Подождать 1 секунду
@@ -38,7 +38,10 @@ public class IngredientsButtonsTest {
     // Проверка нажатия на кнопку "Соусы" на экране конструктора
     @Test
     public void testIngredientSauce() throws InterruptedException {
-        // Нажать на кнопку "Соусы"
+        // сначала Нажать на кнопку "Начинки", чтобы опустить список вниз
+        waitAndClick(MainPageObjects.FILLING_BUTTON);
+        Thread.sleep(1000); // Подождать 1 секунду
+        // Нажать на кнопку "Соусы", чтобы вернуться к разделу и проверить работоспособность перехода
         waitAndClick(MainPageObjects.SAUCE_BUTTON);
         // Проверяем наличие текста "Соусы" на странице
         Thread.sleep(1000); // Подождать 1 секунду
@@ -50,7 +53,7 @@ public class IngredientsButtonsTest {
     // Проверка нажатия на кнопку "Начинки" на экране конструктора
     @Test
     public void testIngredientFilling() throws InterruptedException {
-        // Нажать на кнопку "Начинка"
+        // Нажать на кнопку "Начинки"
         waitAndClick(MainPageObjects.FILLING_BUTTON);
         // Проверяем наличие текста "Начинки" на странице
         Thread.sleep(1000); // Подождать 1 секунду
@@ -80,34 +83,5 @@ public class IngredientsButtonsTest {
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", element);
-    }
-
-    // Получение драйвера в зависимости от переменной окружения BROWSER
-    private WebDriver getDriver() {
-        String driverType = System.getenv("BROWSER");
-        if (driverType == null) {
-            // Если переменная окружения не установлена, используем chrome по умолчанию
-            driverType = "chrome";
-        }
-
-        switch (driverType.toLowerCase()) {
-            case "chrome":
-                ChromeOptions chromeOptions = new ChromeOptions();
-                driver = new ChromeDriver(chromeOptions);
-                driver.manage().window().maximize();
-                return driver;
-            case "firefox":
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
-                driver = new FirefoxDriver(firefoxOptions);
-                driver.manage().window().maximize();
-                return driver;
-            case "yandex":
-                ChromeOptions yandexOptions = new ChromeOptions();
-                driver = new ChromeDriver(yandexOptions);
-                System.setProperty("webdriver.chrome.driver", "src/test/resources/yandexdriver.exe");
-                return driver;
-            default:
-                throw new IllegalArgumentException("Этот браузер не поддерживается, выберите 'chrome','firefox' или 'yandex'");
-        }
     }
 }
