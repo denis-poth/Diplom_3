@@ -1,4 +1,5 @@
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
@@ -25,13 +26,14 @@ public class IngredientsButtonsTest {
     public void testIngredientBun() throws InterruptedException {
         // Нажать на кнопку "Соусы", чтобы перейти в другой раздел и проверить возвращение к разделу "Булки"
         waitAndClick(MainPageObjects.SAUCE_BUTTON);
-        Thread.sleep(1000); // Подождать 1 секунду
+        // Подождать 1 секунду
+        Thread.sleep(1000);
         // Нажать на кнопку "Булки", для непосредственного теста перехода к разделу "Булки"
         waitAndClick(MainPageObjects.BUN_BUTTON);
-        // Проверяем наличие текста "Булки" на странице
-        Thread.sleep(1000); // Подождать 1 секунду
-        WebElement headerElement = driver.findElement(By.xpath(MainPageObjects.BUN_TEXT));
-        assertTrue("Текст 'Булки' не найден на странице", headerElement.getText().contains("Булки"));
+        // Подождать 1 секунду
+        Thread.sleep(1000);
+
+        Assert.assertTrue("Булки не активны", MainPageObjects.isBunButtonActive(driver));
         System.out.println("Тест пройден успешно: выполнен скролл до раздела 'Булки'");
     }
 
@@ -40,13 +42,14 @@ public class IngredientsButtonsTest {
     public void testIngredientSauce() throws InterruptedException {
         // сначала Нажать на кнопку "Начинки", чтобы опустить список вниз
         waitAndClick(MainPageObjects.FILLING_BUTTON);
-        Thread.sleep(1000); // Подождать 1 секунду
+        // Подождать 1 секунду
+        Thread.sleep(1000);
         // Нажать на кнопку "Соусы", чтобы вернуться к разделу и проверить работоспособность перехода
         waitAndClick(MainPageObjects.SAUCE_BUTTON);
-        // Проверяем наличие текста "Соусы" на странице
-        Thread.sleep(1000); // Подождать 1 секунду
-        WebElement headerElement = driver.findElement(By.xpath(MainPageObjects.SAUCE_TEXT));
-        assertTrue("Текст 'Соусы' не найден на странице", headerElement.getText().contains("Соусы"));
+        // Подождать 1 секунду
+        Thread.sleep(1000);
+
+        Assert.assertTrue("Соусы не активны", MainPageObjects.isSauceButtonActive(driver));
         System.out.println("Тест пройден успешно: выполнен скролл до раздела 'Соусы'");
     }
 
@@ -55,10 +58,9 @@ public class IngredientsButtonsTest {
     public void testIngredientFilling() throws InterruptedException {
         // Нажать на кнопку "Начинки"
         waitAndClick(MainPageObjects.FILLING_BUTTON);
-        // Проверяем наличие текста "Начинки" на странице
-        Thread.sleep(1000); // Подождать 1 секунду
-        WebElement headerElement = driver.findElement(By.xpath(MainPageObjects.FILLING_TEXT));
-        assertTrue("Текст 'Начинки' не найден на странице", headerElement.getText().contains("Начинки"));
+        // Подождать 1 секунду
+        Thread.sleep(1000);
+        Assert.assertTrue("Начинки не активны", MainPageObjects.isFillingButtonActive(driver));
         System.out.println("Тест пройден успешно: выполнен скролл до раздела 'Начинки'");
     }
 
