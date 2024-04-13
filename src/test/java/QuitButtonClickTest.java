@@ -22,7 +22,7 @@ public class QuitButtonClickTest {
 
     //Проверка выхода из аккаунта по кнопке "Выйти" в личном кабинете
     @Test
-    public void testLogInByPersonalAccountButton() throws InterruptedException {
+    public void testLogInByPersonalAccountButton(){
         // Клик по кнопке "Личный кабинет"
         waitAndClick(MainPageObjects.PERSONAL_ACCOUNT_BUTTON);
 
@@ -36,10 +36,9 @@ public class QuitButtonClickTest {
         waitAndClick(MainPageObjects.PERSONAL_ACCOUNT_BUTTON);
         // Клик по кнопке "Выход"
         waitAndClick(PersonalAccountPageObjects.QUIT_BUTTON);
-        // Проверяем наличие текста "Вход" в меню на странице
-        Thread.sleep(1000); // Подождать 1 секунду
-        WebElement loginMenuElement = driver.findElement(By.xpath(PersonalAccountPageObjects.LOGIN_TEXT));
-        assertTrue("Текст 'Вход' не найден в меню на странице", loginMenuElement.getText().contains("Вход"));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PersonalAccountPageObjects.LOGIN_TEXT)));
+        // Проверяем, что элемент "Вход" есть на странице
+        assertTrue(driver.findElement(By.xpath(PersonalAccountPageObjects.LOGIN_TEXT)).isDisplayed());
         System.out.println("Тест выполнен успешно: произошел выход из аккаунта");
     }
 

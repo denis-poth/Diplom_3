@@ -8,8 +8,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.*;
 import methods.WebDriverSettings;
 
-import static org.junit.Assert.assertTrue;
-
 public class IngredientsButtonsTest {
     private WebDriver driver;
     private WebDriverWait wait;
@@ -23,15 +21,11 @@ public class IngredientsButtonsTest {
 
     // Проверка нажатия на кнопку "Булки" на экране конструктора
     @Test
-    public void testIngredientBun() throws InterruptedException {
+    public void testIngredientBun(){
         // Нажать на кнопку "Соусы", чтобы перейти в другой раздел и проверить возвращение к разделу "Булки"
         waitAndClick(MainPageObjects.SAUCE_BUTTON);
-        // Подождать 1 секунду
-        Thread.sleep(1000);
         // Нажать на кнопку "Булки", для непосредственного теста перехода к разделу "Булки"
         waitAndClick(MainPageObjects.BUN_BUTTON);
-        // Подождать 1 секунду
-        Thread.sleep(1000);
 
         Assert.assertTrue("Булки не активны", MainPageObjects.isBunButtonActive(driver));
         System.out.println("Тест пройден успешно: выполнен скролл до раздела 'Булки'");
@@ -39,15 +33,11 @@ public class IngredientsButtonsTest {
 
     // Проверка нажатия на кнопку "Соусы" на экране конструктора
     @Test
-    public void testIngredientSauce() throws InterruptedException {
+    public void testIngredientSauce(){
         // сначала Нажать на кнопку "Начинки", чтобы опустить список вниз
         waitAndClick(MainPageObjects.FILLING_BUTTON);
-        // Подождать 1 секунду
-        Thread.sleep(1000);
         // Нажать на кнопку "Соусы", чтобы вернуться к разделу и проверить работоспособность перехода
         waitAndClick(MainPageObjects.SAUCE_BUTTON);
-        // Подождать 1 секунду
-        Thread.sleep(1000);
 
         Assert.assertTrue("Соусы не активны", MainPageObjects.isSauceButtonActive(driver));
         System.out.println("Тест пройден успешно: выполнен скролл до раздела 'Соусы'");
@@ -55,11 +45,10 @@ public class IngredientsButtonsTest {
 
     // Проверка нажатия на кнопку "Начинки" на экране конструктора
     @Test
-    public void testIngredientFilling() throws InterruptedException {
+    public void testIngredientFilling(){
         // Нажать на кнопку "Начинки"
         waitAndClick(MainPageObjects.FILLING_BUTTON);
-        // Подождать 1 секунду
-        Thread.sleep(1000);
+
         Assert.assertTrue("Начинки не активны", MainPageObjects.isFillingButtonActive(driver));
         System.out.println("Тест пройден успешно: выполнен скролл до раздела 'Начинки'");
     }

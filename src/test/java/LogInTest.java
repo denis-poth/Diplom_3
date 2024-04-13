@@ -23,7 +23,7 @@ public class LogInTest {
 
     // Проверка входа в аккаунт, с помощью нажатия кнопки "Войти в аккаунт" на главной странице
     @Test
-    public void testLogInByEnterAccButton() throws InterruptedException {
+    public void testLogInByEnterAccButton(){
         // Клик по кнопке "Личный кабинет"
         waitAndClick(MainPageObjects.LOGIN_ACCOUNT_BUTTON);
         // Ввод данных для входа
@@ -31,16 +31,15 @@ public class LogInTest {
         waitAndSendKeys(PersonalAccountPageObjects.PASSWORD_INPUT_FIELD, "ourancientisbetter");
         // Нажатие на кнопку входа
         waitAndClick(PersonalAccountPageObjects.ENTER_BUTTON);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(MainPageObjects.ORDER_TEXT)));
         // Проверяем наличие кнопки "Оформить заказ" на главной странице
-        Thread.sleep(1000); // Подождать 1 секунду
-        WebElement loginMenuElement = driver.findElement(By.xpath(MainPageObjects.ORDER_TEXT));
-        assertTrue("Текст 'Оформить заказ' не найден на главной странице", loginMenuElement.getText().contains("Оформить заказ"));
+        assertTrue(driver.findElement(By.xpath(MainPageObjects.ORDER_TEXT)).isDisplayed());
         System.out.println("Тест выполнен успешно: выполнен вход в аккаунт, произошел переход на главную страницу");
     }
 
     // Проверка входа в аккаунт, с помощью нажатия кнопки "Личный кабинет" вверху справа экрана
     @Test
-    public void testLogInByPersonalAccountButton() throws InterruptedException {
+    public void testLogInByPersonalAccountButton(){
         // Клик по кнопке "Личный кабинет"
         waitAndClick(MainPageObjects.PERSONAL_ACCOUNT_BUTTON);
         // Ввод данных для входа
@@ -48,16 +47,15 @@ public class LogInTest {
         waitAndSendKeys(PersonalAccountPageObjects.PASSWORD_INPUT_FIELD, "ourancientisbetter");
         // Нажатие на кнопку входа
         waitAndClick(PersonalAccountPageObjects.ENTER_BUTTON);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(MainPageObjects.ORDER_TEXT)));
         // Проверяем наличие кнопки "Оформить заказ" на главной странице
-        Thread.sleep(1000); // Подождать 1 секунду
-        WebElement loginMenuElement = driver.findElement(By.xpath(MainPageObjects.ORDER_TEXT));
-        assertTrue("Текст 'Оформить заказ' не найден на главной странице", loginMenuElement.getText().contains("Оформить заказ"));
+        assertTrue(driver.findElement(By.xpath(MainPageObjects.ORDER_TEXT)).isDisplayed());
         System.out.println("Тест выполнен успешно: выполнен вход в аккаунт, произошел переход на главную страницу");
     }
 
     // Проверка входа в аккаунт, с помощью нажатия кнопки "Войти" на странице регистрации
     @Test
-    public void testLogInByRegistrationFormButton() throws InterruptedException {
+    public void testLogInByRegistrationFormButton(){
         // Клик по кнопке "Личный кабинет"
         waitAndClick(MainPageObjects.PERSONAL_ACCOUNT_BUTTON);
         // Клик по кнопке "Регистрация"
@@ -69,16 +67,15 @@ public class LogInTest {
         waitAndSendKeys(PersonalAccountPageObjects.PASSWORD_INPUT_FIELD, "ourancientisbetter");
         // Нажатие на кнопку входа
         waitAndClick(PersonalAccountPageObjects.ENTER_BUTTON);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(MainPageObjects.ORDER_TEXT)));
         // Проверяем наличие кнопки "Оформить заказ" на главной странице
-        Thread.sleep(1000); // Подождать 1 секунду
-        WebElement loginMenuElement = driver.findElement(By.xpath(MainPageObjects.ORDER_TEXT));
-        assertTrue("Текст 'Оформить заказ' не найден на главной странице", loginMenuElement.getText().contains("Оформить заказ"));
+        assertTrue(driver.findElement(By.xpath(MainPageObjects.ORDER_TEXT)).isDisplayed());
         System.out.println("Тест выполнен успешно: выполнен вход в аккаунт, произошел переход на главную страницу");
     }
 
     // Проверка входа в аккаунт, с помощью нажатия кнопки "Войти" на странице восстановления пароля
     @Test
-    public void testLogInByPasswordRecoveryButton() throws InterruptedException {
+    public void testLogInByPasswordRecoveryButton(){
         // Клик по кнопке "Личный кабинет"
         waitAndClick(MainPageObjects.PERSONAL_ACCOUNT_BUTTON);
         // Клик по кнопке "Восстановить пароль" из раздела "Забыли пароль?"
@@ -90,10 +87,9 @@ public class LogInTest {
         waitAndSendKeys(PersonalAccountPageObjects.PASSWORD_INPUT_FIELD, "ourancientisbetter");
         // Нажатие на кнопку входа
         waitAndClick(PersonalAccountPageObjects.ENTER_BUTTON);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(MainPageObjects.ORDER_TEXT)));
         // Проверяем наличие кнопки "Оформить заказ" на главной странице
-        Thread.sleep(1000); // Подождать 1 секунду
-        WebElement loginMenuElement = driver.findElement(By.xpath(MainPageObjects.ORDER_TEXT));
-        assertTrue("Текст 'Оформить заказ' не найден на главной странице", loginMenuElement.getText().contains("Оформить заказ"));
+        assertTrue(driver.findElement(By.xpath(MainPageObjects.ORDER_TEXT)).isDisplayed());
         System.out.println("Тест выполнен успешно: выполнен вход в аккаунт, произошел переход на главную страницу");
     }
 

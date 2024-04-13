@@ -20,10 +20,9 @@ public class EnterPersonalAccountTest {
 
     // Проверка перехода в Личный Кабинет по клику на "Личный кабинет"
     @Test
-    public void testEnterPersonalAccByClick() throws InterruptedException {
+    public void testEnterPersonalAccByClick(){
         waitAndClick(MainPageObjects.PERSONAL_ACCOUNT_BUTTON);
         // Проверяем наличие текста "Вход" в меню на странице
-        Thread.sleep(1000); // Подождать 1 секунду
         WebElement loginMenuElement = driver.findElement(By.xpath(PersonalAccountPageObjects.LOGIN_TEXT));
         assertTrue("Текст 'Вход' не найден в меню на странице", loginMenuElement.getText().contains("Вход"));
         System.out.println("Тест выполнен успешно: произошел переход на страницу личного кабинета");

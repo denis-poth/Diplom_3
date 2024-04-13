@@ -21,11 +21,10 @@ public class EnterConstructorTest {
 
     // Переход в Конструктор с помощью нажатия на кнопку "Конструктор" в верхнем левом углу экрана
     @Test
-    public void testEnterConstructorByClickConstructorButton() throws InterruptedException {
+    public void testEnterConstructorByClickConstructorButton(){
         waitAndClick(MainPageObjects.PERSONAL_ACCOUNT_BUTTON);
         waitAndClick(MainPageObjects.CONSTRUCTOR_BUTTON);
         // Проверяем наличие текста "Соберите бургер" на странице
-        Thread.sleep(1000); // Подождать 1 секунду
         WebElement headerElement = driver.findElement(By.xpath(MainPageObjects.CREATE_BURGER_TEXT));
         assertTrue("Текст 'Соберите бургер' не найден на странице", headerElement.getText().contains("Соберите бургер"));
         System.out.println("Тест пройден успешно: выполнен переход в конструктор");
@@ -33,11 +32,10 @@ public class EnterConstructorTest {
 
     // Переход в Конструктор с помощью нажатия на главный заголовок "stellar burgers"
     @Test
-    public void testEnterConstructorByClickMainHeader() throws InterruptedException {
+    public void testEnterConstructorByClickMainHeader(){
         waitAndClick(MainPageObjects.PERSONAL_ACCOUNT_BUTTON);
         waitAndClick(MainPageObjects.MAIN_HEADER_BUTTON);
         // Проверяем наличие текста "Соберите бургер" на странице
-        Thread.sleep(1000); // Подождать 1 секунду
         WebElement headerElement = driver.findElement(By.xpath(MainPageObjects.CREATE_BURGER_TEXT));
         assertTrue("Текст 'Соберите бургер' не найден на странице", headerElement.getText().contains("Соберите бургер"));
         System.out.println("Тест пройден успешно: выполнен переход в конструктор");
